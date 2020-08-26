@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import Countdown from './components/Countdown';
+import AddDate from './components/AddDate';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: Date.now()
+    };
+  }
+
+  handleChange = (date) => {
+    const newDate = new Date(date);
+    this.setState({date: newDate});
+  }
+
+  render() {
+    return (
+      <div style={{textAlign: 'center'}}>
+        <h1>Countdown</h1>
+        <AddDate 
+          date={this.state.date} 
+          onChange={this.handleChange} />
+        <Countdown timeTillDate={this.state.date} />
+      </div>
+    );
+  }
 }
 
 export default App;

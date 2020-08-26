@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: lightblue;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.countdown-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
+.countdown-item {
+    color: #111;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 30px;
+    margin: 10px;
+    padding-top: 10px;
+    position: relative;
+    width: 100px;
+    height: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.countdown-item span {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.countdown-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+input[type="datetime-local"] {
+	padding: 5px;
+	border: 0;
+	border-radius: 3px;
+	font-size: 20px;
+	font-family: monospace;
+	text-align: center;
+	color: #010101;
+    background-color: #fff;
+    width: 390px;
+    display: inline-block;
+}
+
+input[type="submit"] {
+    padding: 7px;
+    margin: 5px 0px 0 5px;
+	border: 0;
+	border-radius: 3px;
+	font-size: 20px;
+	font-family: monospace;
+	text-align: center;
+	color: #010101;
+    background-color: lightgreen;
+    display: inline-block;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: green;
 }
