@@ -5,7 +5,6 @@ export default class Countdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            months: undefined,
             days: undefined,
             hours: undefined,
             minutes: undefined,
@@ -18,8 +17,6 @@ export default class Countdown extends Component {
             const then = new Date(this.props.timeTillDate);
             const now = new Date();
             let miliseconds = then.getTime() - now.getTime(); miliseconds = miliseconds < 0 ? 0 : miliseconds;
-            const months = Math.floor(miliseconds / (1000 * 3600 * 24 * 30));
-            miliseconds %= 1000 * 3600 * 24 * 30;
             const days = Math.floor(miliseconds / (1000 * 3600 * 24));
             miliseconds %= 1000 * 3600 * 24;
             const hours = Math.floor(miliseconds / (1000 * 3600));
@@ -28,28 +25,30 @@ export default class Countdown extends Component {
             miliseconds %= 60000;
             const seconds = Math.floor(miliseconds / 1000);
 
-            this.setState({ months, days, hours, minutes, seconds });
+            if (seconds === 0 && minutes === 0 && hours === 0 && days === 0) {
+                this.setState({
+                    days: 'D', hours: 'O', minutes: 'N', seconds: 'E'
+                })
+            }
+            else {
+                this.setState({ days, hours, minutes, seconds });
+            }
         }, 1000);
     }
 
 
     
     render() {
-        const { months, days, hours, minutes, seconds } = this.state;
+        const { days, hours, minutes, seconds } = this.state;
 
         // Mapping the date values to radius values
-        const monthsRadius = mapNumber(months, 13, 0, 0, 360);
-        const daysRadius = mapNumber(days, 30, 0, 0, 360);
+        const daysRadius = mapNumber(days, 365, 0, 0, 360);
         const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
         const minutesRadius = mapNumber(minutes, 60, 0, 0, 360);
         const secondsRadius = mapNumber(seconds, 60, 0, 0, 360);
 
         return (
             <div className="countdown-wrapper">
-                <CountdownItem 
-                    name={'months'}
-                    timer={months}
-                    radius={monthsRadius} />
                 <CountdownItem 
                     name={'days'}
                     timer={days}
